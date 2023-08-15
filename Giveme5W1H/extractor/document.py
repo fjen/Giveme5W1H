@@ -74,7 +74,7 @@ class Document(object):
     def get_full_text(self):
         return self._full_text
 
-    def set_candidates(self, extractor, candidates):
+    def set_candidates(self, extractor: str, candidates):
         self._candidates[extractor] = candidates
 
     def get_candidates(self, extractor: str):
