@@ -5,6 +5,7 @@ from nltk.tree import ParentedTree
 from Giveme5W1H.extractor.candidate import Candidate
 from Giveme5W1H.extractor.extractors.abs_extractor import AbsExtractor
 
+WHO_NERS = ['PERSON', 'ORGANIZATION', 'LOCATION', 'NATIONALITY', "COUNTRY", "CITY"]
 
 class ActionExtractor(AbsExtractor):
     """
@@ -187,7 +188,7 @@ class ActionExtractor(AbsExtractor):
                     if not contains_ne:
                         # If the current mention doesn't contain a named entity, check the other members of the chain
                         for token in doc_ner[mention['sentNum'] - 1][mention['headIndex'] - 1:mention['endIndex'] - 1]:
-                            if token[1] in ['PERSON', 'ORGANIZATION', 'LOCATION']:
+                            if token[1] in WHO_NERS:
                                 contains_ne = True
                                 break
 
@@ -329,11 +330,7 @@ class ActionExtractor(AbsExtractor):
         """
         count = 0
         if isinstance(obj, dict):
-            if obj['nlpToken']['ner'] == 'PERSON':
-                return 3
-            elif obj['nlpToken']['ner'] == 'TITLE':
-                return 2
-            elif obj['nlpToken']['ner'] == 'ORGANIZATION':
+            if obj['nlpToken']['ner'] in WHO_NERS:
                 return 1
         else:
             for each in obj:
