@@ -25,7 +25,7 @@ class Preprocessor:
         # define basic base_config and desired processing pipeline
         self.base_config = {
             'timeout': 500000,
-            'annotators': 'tokenize,ssplit,pos,lemma,parse,ner,depparse,coref',
+            'annotators': 'tokenize,pos,lemma,parse,ner,coref',
             'tokenize.language': 'English',
             # 'coref.algorithm' :'neural', see https://github.com/smilli/py-corenlp/issues/18
             # CoreNLPs charniak-wrapper has some problems ...
