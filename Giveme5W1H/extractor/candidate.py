@@ -19,13 +19,19 @@ class Candidate:
     def get_parts(self):
         return self._parts
 
-    def set_parts(self, parts):
+    def set_parts(self, parts) -> None:
         self._parts = parts
 
-    def get_parts_as_text(self):
+    def get_parts_as_text(self) -> str:
         answer_text = []
         for part in self._parts:
             answer_text.append(part[0]['nlpToken']['originalText'])
+        return ' '.join(answer_text)
+
+    def get_parts_as_text_lemma(self) -> str:
+        answer_text = []
+        for part in self._parts:
+            answer_text.append(part[0]['nlpToken']['lemma'])
         return ' '.join(answer_text)
 
     # helper to avoid refactoring by carrying data in a legacy format
